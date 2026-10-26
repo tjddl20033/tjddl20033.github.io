@@ -1,91 +1,590 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>박성이|PM</title>
-  <style>
-    :root {
-      --bg: #FFFFFF;
-      --card-bg: #5C74FF;
-      --accent: #FFFFFF;
-      --text: #000000;
-      --text-sub: #5E5050;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
-    body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
-    header { position: fixed; top: 0; width: 100%; background: rgba(15,23,42,0.8); backdrop-filter: blur(8px); padding: 1.2rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); text-decoration: none; }
-    nav a { color: var(--text-sub); text-decoration: none; margin-left: 1.5rem; transition: 0.2s; }
-    nav a:hover { color: var(--accent); }
-    
-    section { max-width: 1000px; margin: 0 auto; padding: 6rem 2rem 3rem; }
-    .hero { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; }
-    .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.3; }
-    .hero p { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 2rem; max-width: 600px; }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
-    .card h3 { color: var(--accent); font-size: 1.8rem; margin-bottom: 0.5rem; }
-    
-    h2 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 0.3rem; margin-bottom: 2rem; }
-    footer { text-align: center; padding: 3rem; color: var(--text-sub); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박성이 | PM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Pretendard Font CDN -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* 커스텀 슬림 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <a href="#" class="logo">PORTFOLIO</a>
-    <nav>
-      <a href="#about">소개</a>
-      <a href="#projects">프로젝트</a>
-      <a href="#contact">연락처</a>
-    </nav>
-  </header>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
 
-  <main>
-    <section id="about" class="hero">
-      <h1>안녕하세요,<br>성장하는 기획자입니다.</h1>
-      <p>데이터 기반으로 문제의 원인을 정의하고, 효율적인 구조로 해결책을 만들어냅니다.</p>
-      
-      <div class="grid">
-        <div class="card">
-          <h3>97%</h3>
-          <p>수작업 프로세스 자동화 달성</p>
-        </div>
-        <div class="card">
-          <h3>100%</h3>
-          <p>프로젝트 일정 준수율 기록</p>
-        </div>
-        <div class="card">
-          <h3>4+</h3>
-          <p>핵심 프로젝트 리딩 및 완료</p>
-        </div>
-      </div>
-    </section>
+    <!-- 1. 헤더 네비게이션 (2개 카테고리: 소개, 포트폴리오 + 연락하기) -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+            <!-- 로고 / 이니셜 (좌측) -->
+            <a href="#about" class="text-base font-extrabold tracking-tight text-slate-900 hover:text-brand-600 transition-colors">
+                박성이 <span class="text-xs font-normal text-slate-400 ml-1">/ Portfolio</span>
+            </a>
 
-    <section id="projects">
-      <h2>프로젝트</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Project 01</h3>
-          <p>포트폴리오 웹사이트 구축 프로젝트</p>
-        </div>
-        <div class="card">
-          <h3>Project 02</h3>
-          <p>데이터 분석 및 프로세스 개선 프로젝트</p>
-        </div>
-      </div>
-    </section>
+            <!-- 우측 정렬 그룹 (메인 메뉴 + 연락하기 버튼) -->
+            <div class="flex items-center gap-6 sm:gap-8">
+                <!-- 2가지 메인 메뉴 (소개, 포트폴리오) -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                    <a href="#about" class="hover:text-slate-900 transition-colors py-1">소개</a>
+                    <a href="#portfolio" class="hover:text-slate-900 transition-colors py-1">포트폴리오</a>
+                </nav>
 
-    <section id="contact">
-      <h2>박성이|PM</h2>
-      <p>tjddl20033@gmail.com</p>
-      <p>GitHub: https://github.com/tjddl20033</p>
-    </section>
-  </main>
+                <!-- 우측 행동 버튼 (연락하기) 및 모바일 토글 -->
+                <div class="flex items-center gap-3">
+                    <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 border border-slate-900 hover:bg-slate-900 hover:text-white px-3.5 py-1.5 rounded-full transition-all">
+                        <span>연락하기</span>
+                        <i data-lucide="arrow-down-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden p-1.5 text-slate-600 hover:text-slate-900" aria-label="메뉴 열기">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-  <footer>
-    <p>© 2026 tjddl20033. All rights reserved.</p>
-  </footer>
+        <!-- 모바일 네비게이션 드롭다운 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-3">
+            <a href="#about" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">소개 (About)</a>
+            <a href="#portfolio" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">포트폴리오 (Portfolio)</a>
+            <a href="#contact" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">연락하기 (Contact)</a>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="max-w-4xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: 소개 (ABOUT) -->
+        <!-- ========================================== -->
+        <section id="about" class="mb-24">
+            
+            <!-- 1.0 프로필 헤더 (플랫 에디토리얼 스타일 한 줄 인트로) -->
+            <div class="pb-12 border-b border-slate-200">
+                <div class="inline-block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+                    Process Optimization & Quality Specialist
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight mb-4">
+                    박성이
+                </h1>
+                <p class="text-lg sm:text-xl font-medium text-slate-700 leading-snug max-w-2xl mb-6">
+                    사회학적 관점과 표준화 프로세스로 정밀한 품질과 안전을 기획합니다.
+                </p>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl word-keep-all">
+                    사회학적 조사 분석 기법과 국제 운항품질/안전관리 표준(ICAO Annex 19, IOSA)을 결합하여 규제 환경 및 조직 절차의 병목을 체계적으로 개선해 왔습니다. 데이터 정합성 검증과 최신 AI 도구를 활용한 업무 효율화에 강점이 있습니다.
+                </p>
+            </div>
+
+            <!-- 1.1 학력 (EDUCATION) -->
+            <div class="py-12 border-b border-slate-200">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+                    학력
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                    <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                        2020.03 - 2026.02
+                    </div>
+                    <div class="sm:col-span-8 space-y-1">
+                        <h3 class="text-base font-bold text-slate-900">경희대학교 (Kyung Hee University)</h3>
+                        <p class="text-xs sm:text-sm text-slate-600">사회학(본), 사회과학 융합전공 미래기술사회트랙(복수) 학사 졸업</p>
+                        <p class="text-xs text-slate-500">· 해외 교환학생 프로그램 수료  </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1.2 경력 및 활동 이력 (EXPERIENCE & ACTIVITIES) -->
+            <div class="py-12 border-b border-slate-200">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+                    경력 및 활동 이력
+                </h2>
+
+                <div class="space-y-10">
+                    <!-- 경력 1: 에어제타 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                            2026.04 – 2026.07
+                        </div>
+                        <div class="sm:col-span-8 space-y-1.5">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-base font-bold text-slate-900">에어제타 (Air Zeta)</h3>
+                                <span class="text-xs text-slate-500 font-medium">· 운항품질팀 인턴</span>
+                            </div>
+                            <ul class="text-xs sm:text-sm text-slate-600 space-y-1 leading-relaxed">
+                                <li>· 운항안전 매뉴얼(OQB001, OQB003 Just Culture) 개정 작업 및 IOSA 체크리스트 최신화 주도</li>
+                                <li>· 국제민간항공기구(ICAO Annex 19) 및 IOSA 안전 기준 정합성 100% 검증 수립</li>
+                                <li>· 안전 보고 시스템 내 자발적 보고서 처리 절차 피드백 환류 프로세스 개선</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 경력 2: 입소스 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                            2025.02 - 2025.02
+                        </div>
+                        <div class="sm:col-span-8 space-y-1.5">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-base font-bold text-slate-900">입소스 (Ipsos)</h3>
+                                <span class="text-xs text-slate-500 font-medium">· 보고서 제작 보조 </span>
+                            </div>
+                            <ul class="text-xs sm:text-sm text-slate-600 space-y-1 leading-relaxed">
+                                <li>· 정량·정성 시장조사 코딩북 설계 및 사용자 응답 데이터 검증 작업 보조</li>
+                                <li>· SPSS 및 통계 분석 도구를 활용한 데이터 오류 필터링 및 리포트 시각화 기초 자료 작성</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 경력 3: 사회학과 학생회 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                            2020.03 - 2021.09
+                        </div>
+                        <div class="sm:col-span-8 space-y-1">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-base font-bold text-slate-900">경희대학교 사회학과 학생회</h3>
+                                <span class="text-xs text-slate-500 font-medium">· 홍보부 부원 및 부장</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                · 학생회 공식 소통 채널 5일 응답 SLA 프로토콜 구축 및 소식지 콘텐츠 표준 가이드 제작
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 경력 4: 미래인재센터 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                            2022.03 - 2022.08
+                        </div>
+                        <div class="sm:col-span-8 space-y-1">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-base font-bold text-slate-900">경희대학교 미래인재센터</h3>
+                                <span class="text-xs text-slate-500 font-medium">· 서포터즈</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                · 취창업 지원 프로그램 홍보 기획 및 재학생 대상 피드백 수집 설문 프로세스 운용
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 경력 5: 한국어 도우미 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
+                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
+                            2021.09 - 2021.12
+                        </div>
+                        <div class="sm:col-span-8 space-y-1">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-base font-bold text-slate-900">한국어 도우미 프로그램</h3>
+                                <span class="text-xs text-slate-500 font-medium">· 봉사활동</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                · 외국인 교환학생 및 유학생 대상 언어·문화 적응 지원 및 다문화 커뮤니케이션 조율
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1.3 참여 프로젝트 및 연구 (PROJECTS & RESEARCH) -->
+            <div class="py-12 border-b border-slate-200">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+                    프로젝트
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- 연구 1 -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-base font-bold text-slate-900">
+                                운항품질 매뉴얼 표준화 & Just Culture(OQB003) 개정
+                            </h3>
+                            <span class="text-xs text-slate-400">에어제타</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            ICAO Annex 19 및 IOSA 안전 기준 갱신 대응. 조항 간 격차(Gap) 분석 대조표 작성을 통해 100% 표준 정합성을 확보하고 자발적 안전보고 시스템 처리 절차를 개정했습니다.
+                        </p>
+                    </div>
+
+                    <!-- 연구 2 -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-base font-bold text-slate-900">
+                                소통 창구 5일 응답 프로토콜 구축 & 콘텐츠 브랜딩
+                            </h3>
+                            <span class="text-xs text-slate-400">사회학과 학생회</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            파편화된 건의 창구를 단일화하고 모든 접수건에 대해 5일 이내 응답을 보장하는 SLA 체계를 도입하여 소통 피드백 리드타임을 대폭 단축시켰습니다.
+                        </p>
+                    </div>
+
+                    <!-- 연구 3 -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-base font-bold text-slate-900">
+                                데이터 기반 사용자/시장 조사 및 통계 검증 리포팅
+                            </h3>
+                            <span class="text-xs text-slate-400">입소스 및 연구 조사</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            SPSS 통계 프로그램과 Python 데이터를 활용하여 조사 데이터 논오류 필터링 수식을 적용하고 시각화 리포트 및 정성 코딩북 기준을 정립했습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1.4 핵심 역량 (SKILLS & CORE COMPETENCIES) -->
+            <div class="pt-12">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+                    핵심 역량
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <!-- 역량 1: 데이터 분석 & 리서치 -->
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
+                            데이터 분석 & 리서치
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>SPSS, R, Python</strong> 기반 데이터 정제 및 회귀·교차분석, 정량·정성 설문 및 인터뷰 조사 설계
+                        </p>
+                    </div>
+
+                    <!-- 역량 2: 다른 역량 -->
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
+                            다른 역량(글쓰기?)
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>ICAO Annex 19</strong> 규정 검증, <strong>IOSA</strong> 표준 감사 체크리스트 최신화, Just Culture(공정문화) 절차 수립 및 문서 감사
+                        </p>
+                    </div>
+    
+                    <!-- 역량 3: AI 활용 -->
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
+                            AI 활용
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Gemini, Claude, NotebookLM</strong> 도구를 활용한 업무 규정 검증 및 문서 요약 자동화
+                        </p>
+                    </div>
+                  
+                    <!-- 역량 4: 생산성 도구 -->
+                    <div class="space-y-2">
+                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
+                            생산성 & 워크플로우
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>,MS Office, Google Workspace, Notion, Figma </strong> 를 활용한 설문 가이드 시각 자료, 리서치 결과 발표용 대시보드와 리포트 레이아웃 시각화
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: 포트폴리오 (PORTFOLIO) -->
+        <!-- ========================================== -->
+        <section id="portfolio" class="pt-12 border-t border-slate-900 mb-24">
+            <div class="flex items-baseline justify-between mb-10">
+                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">
+                    포트폴리오
+                </h2>
+                <span class="text-xs text-slate-400">클릭 시 상세 모달 보기</span>
+            </div>
+
+            <!-- 프로젝트 리스트 (플랫 항목) -->
+            <div class="divide-y divide-slate-200">
+                
+                <!-- 프로젝트 1 -->
+                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-1')">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-400">01</span>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                                에어제타 운항품질 매뉴얼 표준화 & Just Culture(OQB003) 개정
+                            </h3>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-500 shrink-0">에어제타 (Air Zeta)</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
+                        ICAO Annex 19 및 IOSA 안전 기준 갱신에 맞춰 기존 운항안전 매뉴얼(OQB001, OQB003)을 전면 개정하고, 자발적 안전보고 시스템 피드백 환류 프로토콜을 구축했습니다.
+                    </p>
+
+                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
+                        <div class="font-bold text-slate-900">
+                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
+                            IOSA 국제 표준 정합성 100% 달성 & 피드백 주기를 5일로 단축
+                        </div>
+                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
+                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </article>
+
+                <!-- 프로젝트 2 -->
+                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-2')">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-400">02</span>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                                학생회 소통 창구 5일 응답 프로토콜 구축 & 콘텐츠 브랜딩
+                            </h3>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-500 shrink-0">경희대 사회학과</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
+                        파편화된 건의 채널을 단일화하고 모든 접수건에 5일 이내 응답을 보장하는 SLA 프로토콜을 도입하여 소통 신뢰도를 확보했습니다.
+                    </p>
+
+                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
+                        <div class="font-bold text-slate-900">
+                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
+                            응답 리드타임 5일 이내 100% 준수 & 재학생 행사 참여율 대폭 상승
+                        </div>
+                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
+                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </article>
+
+                <!-- 프로젝트 3 -->
+                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-3')">
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-bold text-slate-400">03</span>
+                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                                데이터 기반 사용자/시장 조사 및 통계 리포팅
+                            </h3>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-500 shrink-0">입소스 (Ipsos) 및 대학 리서치</span>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
+                        SPSS 및 Python 분석과 정성 인터뷰 코딩북 설계를 통해 데이터 응답 오류를 필터링하고 시각화 리포트를 도출했습니다.
+                    </p>
+
+                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
+                        <div class="font-bold text-slate-900">
+                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
+                            응답 데이터 무결성 검증 100% & 시각화 가이드라인 작성
+                        </div>
+                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
+                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3: 연락하기 (CONTACT) -->
+        <!-- ========================================== -->
+        <section id="contact" class="pt-16 border-t border-slate-900">
+            <div class="max-w-2xl">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                    Contact
+                </h2>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
+                    함께 프로세스와 품질을 만들어갈 제안을 기다립니다.
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-8">
+                    운항품질, 프로세스 표준화, 데이터 기반 기획 관련 문의나 커피챗 제안은 언제든 편하게 아래 메일로 연락해 주세요.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm">
+                    <button onclick="copyToClipboard('sungyi.park@example.com')" class="inline-flex items-center gap-2 bg-slate-900 text-white font-medium px-5 py-3 rounded-full hover:bg-slate-800 transition-colors">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>sungyi.park@example.com 복사</span>
+                    </button>
+
+                    <a href="https://github.com/tjddl20033" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 font-medium px-4 py-3 border border-slate-300 rounded-full transition-colors">
+                        <i data-lucide="github" class="w-4 h-4"></i>
+                        <span>GitHub 프로필</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="border-t border-slate-100 py-8 text-center text-xs text-slate-400">
+        <div class="max-w-4xl mx-auto px-5 sm:px-8 flex items-center justify-between">
+            <div>© 2026 박성이 (Sung-yi Park). All rights reserved.</div>
+            <a href="#about" class="hover:text-slate-900 transition-colors">TOP ↑</a>
+        </div>
+    </footer>
+
+    <!-- 프로젝트 상세 모달 (MODAL) -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+        <div class="bg-white max-w-2xl w-full p-6 sm:p-8 rounded-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-start justify-between border-b border-slate-200 pb-4 mb-6">
+                <div>
+                    <span id="modalCategory" class="text-xs font-bold text-brand-600">소속 / 카테고리</span>
+                    <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-1">프로젝트 제목</h3>
+                </div>
+                <button onclick="closeProjectModal()" class="p-1 text-slate-400 hover:text-slate-900">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="space-y-6 text-xs sm:text-sm">
+                <div>
+                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">1. 배경 및 문제 정의</h4>
+                    <p id="modalProblem" class="text-slate-600 leading-relaxed">내용</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">2. 주요 수행 액션 (Action)</h4>
+                    <p id="modalAction" class="text-slate-600 leading-relaxed whitespace-pre-line">내용</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">3. 성과 및 결과 (Result)</h4>
+                    <p id="modalResult" class="font-semibold text-slate-900 leading-relaxed">내용</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이메일 복사 완료 토스트 알림 -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white text-xs font-medium px-4 py-3 rounded-lg shadow-lg flex items-center gap-2">
+        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+        <span>이메일 주소가 클립보드에 복사되었습니다!</span>
+    </div>
+
+    <!-- 스크립트 -->
+    <script>
+        // Lucide 아이콘 활성화
+        lucide.createIcons();
+
+        // 프로젝트 상세 데이터 사전
+        const projectDetails = {
+            'proj-1': {
+                title: '에어제타 운항품질 매뉴얼 표준화 & Just Culture(OQB003) 개정',
+                category: '에어제타 (Air Zeta) 운항품질팀 인턴',
+                problem: 'ICAO Annex 19 개정 및 IOSA(IATA Operational Safety Audit) 최신 안전 규정에 따라 기존 매뉴얼과의 조항 간 격차(Gap) 분석 및 신속한 갱신이 시급했던 상황이었습니다.',
+                action: '1) 매뉴얼 표준 조항 대조표(Cross-reference Table)를 1:1로 작성하여 100% 검증 수립.\n2) Just Culture(공정문화) 자발적 안전보고서 제출 시 무벌칙 원칙 명시 및 피드백 환류 수렴 프로토콜 구축.\n3) Gemini 및 Claude 문서 비교 도구를 활용해 개정 공수를 40% 절감.',
+                result: 'IOSA 국제 안전 심사 정합성 100% 달성 및 지적사항 0건. 자발적 안전보고 피드백 주기를 기존 14일에서 5일로 대폭 단축.'
+            },
+            'proj-2': {
+                title: '학생회 소통 채널 5일 응답 프로토콜 구축 & 콘텐츠 브랜딩',
+                category: '경희대학교 사회학과 학생회 홍보국장',
+                problem: '학생들의 다양한 건의사항과 문의가 여러 온라인 채널로 분산되어 피드백이 지연되고 소통 만족도가 낮았던 문제가 있었습니다.',
+                action: '1) 건의 수렴 접수 창구를 단일화하고 모든 문의건에 대해 최대 5일 이내 응답을 보장하는 SLA 프로토콜 도입.\n2) 학생회 카드뉴스 및 소식지 디자인 서식을 표준 가이드라인으로 일원화.',
+                result: '익명 창구 응답 리드타임 5일 이내 100% 준수 완료. 학생회 행사 참여율 및 소통 만족도 지표 대폭 상승.'
+            },
+            'proj-3': {
+                title: '데이터 기반 사용자/시장 조사 및 통계 리포팅',
+                category: '입소스 (Ipsos) 및 대학 리서치 활동',
+                problem: '정량 및 정성 시장조사 수행 과정에서 다량의 응답 데이터 오류와 코딩 기준의 파편화로 검증 리드타임이 증가하는 현상이 발생했습니다.',
+                action: '1) 정량·정성 데이터 코딩북 표준 기준을 재정의하여 작업 기준 마련.\n2) SPSS 및 Python을 활용한 회귀분석 및 논리적 오류 필터링 수식 적용.',
+                result: '데이터 수작업 검증 오차율 0% 달성 및 시각화 가이드라인 작성을 통한 최종 보고서 완성도 향상.'
+            }
+        };
+
+        // 모달 열기 함수
+        function openProjectModal(id) {
+            const data = projectDetails[id];
+            if (!data) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalProblem').innerText = data.problem;
+            document.getElementById('modalAction').innerText = data.action;
+            document.getElementById('modalResult').innerText = data.result;
+
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 모달 닫기 함수
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // ESC 키 닫기 이벤트
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
+
+        // 모바일 메뉴 토글
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 이메일 클립보드 복사
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
