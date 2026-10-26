@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포트폴리오</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단 헤더 & 네비게이션 탭 -->
+  <header class="navbar">
+    <div class="logo">PORTFOLIO</div>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('about')">소개</button>
+      <button class="tab-btn" onclick="switchTab('portfolio')">포트폴리오</button>
+      <button class="tab-btn" onclick="switchTab('skills')">역량 & 경력</button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- [섹션 1] 소개 (About) -->
+    <section id="about" class="tab-content active">
+      <!-- 메인 프로필 및 수치 성과 카드 -->
+      <div class="hero">
+        <div class="hero-text">
+          <span class="badge">품질·운영 기획 / 프로세스 표준화</span>
+          <h1>데이터와 표준화를 통해<br>문제를 구조적으로 해결합니다.</h1>
+          <p>규제 준수 및 운영 가이드라인 재설계부터 프로세스 자동화까지, 명확한 임팩트를 만들어냅니다.</p>
+        </div>
+
+        <!-- 핵심 수치 성과 카드 -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-num">97%</span>
+            <span class="metric-label">수작업 자동화 비율</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">100%</span>
+            <span class="metric-label">표준 가이드라인 준수율</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-num">57%</span>
+            <span class="metric-label">운영 리드타임 단축</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 상세 학력/경력 블록 -->
+      <div class="info-block">
+        <h2>경력 & 활동</h2>
+        <ul class="timeline">
+          <li><strong>운항품질팀 인턴</strong> — 매뉴얼 개정, IOSA 기획 및 매뉴얼 감사 (2026)</li>
+          <li><strong>사회학과 학사 졸업</strong> — 조사방법론 및 데이터 분석 수행</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- [섹션 2] 포트폴리오 (Portfolio) -->
+    <section id="portfolio" class="tab-content">
+      <h2>포트폴리오 프로젝트</h2>
+      
+      <!-- 포트폴리오 카드 그리드 -->
+      <div class="portfolio-grid">
+        
+        <!-- 프로젝트 카드 1 -->
+        <div class="portfolio-card" onclick="openModal('project1')">
+          <div class="card-tag">기획 · 프로세스</div>
+          <h3>프로세스 표준화 및 매뉴얼 감사 체계 구축</h3>
+          <p class="card-desc">국제 기준 준수 매뉴얼 재설계 및 신뢰성 확보 프로젝트</p>
+          <div class="card-footer">
+            <span class="badge-sm">ICAO / IOSA</span>
+            <span class="badge-sm">문서 감사</span>
+          </div>
+        </div>
+
+        <!-- 프로젝트 카드 2 -->
+        <div class="portfolio-card" onclick="openModal('project2')">
+          <div class="card-tag">데이터 분석</div>
+          <h3>설문 및 텍스트 데이터 기반 정량·정성 분석</h3>
+          <p class="card-desc">사용자 경험 수집 및 분류를 통한 개선 과제 도출</p>
+          <div class="card-footer">
+            <span class="badge-sm">데이터 분석</span>
+            <span class="badge-sm">리포트 작성</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- [섹션 3] 역량 (Skills) -->
+    <section id="skills" class="tab-content">
+      <h2>핵심 역량 & 스킬</h2>
+      <div class="skills-wrapper">
+        <div class="skill-category">
+          <h3>기획 및 문서화</h3>
+          <p>업무 매뉴얼 작성, 프로세스 표준화, 요구사항 정의</p>
+        </div>
+        <div class="skill-category">
+          <h3>데이터 & 리서치</h3>
+          <p>정량·정성 설문 조사, 클러스터링/통계 분석, 리포트 작성</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- [프로젝트 상세 보기 슬라이드 / 모달] -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+      <div id="modalBody">
+        <!-- JS로 동적 내용 삽입 -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
