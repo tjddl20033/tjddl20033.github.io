@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박성이 | PM</title>
+    <title>박성이 | Product Manager · Data & Strategy</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -18,12 +18,12 @@
                         sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
-                            900: '#0f172a',
+                        editorial: {
+                            bg: '#FAFAFA',
+                            surface: '#FFFFFF',
+                            ink: '#0F172A',
+                            accent: '#1D4ED8',
+                            line: '#E2E8F0',
                         }
                     }
                 }
@@ -31,424 +31,304 @@
         }
     </script>
     <style>
+        /* 상단 고정 헤더 유리 질감 효과 */
         .glass-header {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(250, 250, 250, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+        }
+        /* 한글 단어 단위 줄바꿈 최적화 */
+        .word-keep {
+            word-break: keep-all;
         }
         /* 커스텀 슬림 스크롤바 */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #ffffff;
+            background: #FAFAFA;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #CBD5E1;
             border-radius: 3px;
         }
     </style>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
+<body class="bg-[#FAFAFA] text-[#0F172A] font-sans antialiased selection:bg-[#0F172A] selection:text-white">
 
-    <!-- 1. 헤더 네비게이션 (2개 카테고리: 소개, 포트폴리오 + 연락하기) -->
-    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-slate-100">
+    <!-- ========================================== -->
+    <!-- HEADER: 고정형 미니멀 네비게이션 -->
+    <!-- ========================================== -->
+    <header class="fixed top-0 left-0 right-0 z-40 glass-header border-b border-slate-200">
         <div class="max-w-4xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-            <!-- 로고 / 이니셜 (좌측) -->
-            <a href="#about" class="text-base font-extrabold tracking-tight text-slate-900 hover:text-brand-600 transition-colors">
-                박성이 <span class="text-xs font-normal text-slate-400 ml-1">/ Portfolio</span>
+            <!-- 좌측 로고 -->
+            <a href="#top" class="flex items-baseline gap-2 group">
+                <span class="text-base font-extrabold tracking-tight text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
+                    박성이
+                </span>
+                <span class="text-[11px] font-medium tracking-widest uppercase text-slate-400">
+                    SEONGLEE PARK
+                </span>
             </a>
 
-            <!-- 우측 정렬 그룹 (메인 메뉴 + 연락하기 버튼) -->
-            <div class="flex items-center gap-6 sm:gap-8">
-                <!-- 2가지 메인 메뉴 (소개, 포트폴리오) -->
-                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-                    <a href="#about" class="hover:text-slate-900 transition-colors py-1">소개</a>
-                    <a href="#portfolio" class="hover:text-slate-900 transition-colors py-1">포트폴리오</a>
-                </nav>
-
-                <!-- 우측 행동 버튼 (연락하기) 및 모바일 토글 -->
-                <div class="flex items-center gap-3">
-                    <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-900 border border-slate-900 hover:bg-slate-900 hover:text-white px-3.5 py-1.5 rounded-full transition-all">
+            <!-- 우측 정렬 메뉴 그룹 (소개, 포트폴리오, 핵심역량, 연락하기 4개 항목) -->
+            <div class="flex items-center gap-6 sm:gap-7">
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600" aria-label="주요 메뉴">
+                    <a href="#about" class="hover:text-[#0F172A] transition-colors py-1">소개</a>
+                    <a href="#portfolio" class="hover:text-[#0F172A] transition-colors py-1">포트폴리오</a>
+                    <a href="#skills" class="hover:text-[#0F172A] transition-colors py-1">핵심역량</a>
+                    <a href="#contact" class="inline-flex items-center gap-1.5 text-xs font-semibold bg-[#0F172A] text-white hover:bg-[#1D4ED8] px-4 py-1.5 rounded-full transition-colors">
                         <span>연락하기</span>
                         <i data-lucide="arrow-down-right" class="w-3.5 h-3.5"></i>
                     </a>
-                    <button id="mobileMenuBtn" class="md:hidden p-1.5 text-slate-600 hover:text-slate-900" aria-label="메뉴 열기">
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
-                </div>
+                </nav>
+
+                <!-- 모바일 메뉴 토글 버튼 -->
+                <button id="mobileMenuBtn" type="button" class="md:hidden p-2 text-slate-600 hover:text-[#0F172A]" aria-label="모바일 메뉴 열기" aria-expanded="false">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
             </div>
         </div>
 
-        <!-- 모바일 네비게이션 드롭다운 -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-4 space-y-3">
-            <a href="#about" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">소개 (About)</a>
-            <a href="#portfolio" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">포트폴리오 (Portfolio)</a>
-            <a href="#contact" class="block text-sm font-medium text-slate-700 hover:text-slate-900 mobile-nav-item">연락하기 (Contact)</a>
+        <!-- 모바일 드롭다운 메뉴 (4개 항목 동일 구성) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#FFFFFF] border-b border-slate-200 px-6 py-4 space-y-2.5">
+            <a href="#about" class="block py-1.5 text-sm font-medium text-slate-700 hover:text-[#0F172A] mobile-nav-item">소개</a>
+            <a href="#portfolio" class="block py-1.5 text-sm font-medium text-slate-700 hover:text-[#0F172A] mobile-nav-item">포트폴리오</a>
+            <a href="#skills" class="block py-1.5 text-sm font-medium text-slate-700 hover:text-[#0F172A] mobile-nav-item">핵심역량</a>
+            <a href="#contact" class="block py-1.5 text-sm font-semibold text-[#1D4ED8] hover:text-[#0F172A] mobile-nav-item">연락하기</a>
         </div>
     </header>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <main class="max-w-4xl mx-auto px-5 sm:px-8 pt-28 pb-20">
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT -->
+    <!-- ========================================== -->
+    <main id="top" class="max-w-4xl mx-auto px-5 sm:px-8 pt-28 sm:pt-32 pb-24">
 
         <!-- ========================================== -->
-        <!-- SECTION 1: 소개 (ABOUT) -->
+        <!-- HERO SECTION -->
         <!-- ========================================== -->
-        <section id="about" class="mb-24">
-            
-            <!-- 1.0 프로필 헤더 (플랫 에디토리얼 스타일 한 줄 인트로) -->
+        <section class="pb-16 border-b border-slate-200">
+            <p class="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#1D4ED8] mb-4">
+                Product Manager · Data &amp; Strategy
+            </p>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#0F172A] leading-[1.3] mb-6 word-keep">
+                정량·정성 데이터의 융합으로 유저의 행동을 읽고,<br class="hidden sm:inline" /> 지속 가능한 구조를 설계합니다
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl word-keep">
+                인문·사회과학적 통찰과 데이터 분석 역량을 바탕으로 문제의 본질을 구조화하고,<br class="hidden sm:inline" />
+                조직과 프로덕트의 지속 가능한 운영 체계를 설계합니다.
+            </p>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: 소개 (#about) - 학력 + 경력 및 활동 -->
+        <!-- ========================================== -->
+        <section id="about" class="py-16 border-b border-slate-200">
+            <div class="mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">About</span>
+                <h2 class="text-2xl font-extrabold tracking-tight text-[#0F172A] mt-1">소개</h2>
+            </div>
+
+            <!-- Subsection A: 학력 -->
             <div class="pb-12 border-b border-slate-200">
-                <div class="inline-block text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
-                    Process Optimization & Quality Specialist
-                </div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight mb-4">
-                    박성이
-                </h1>
-                <p class="text-lg sm:text-xl font-medium text-slate-700 leading-snug max-w-2xl mb-6">
-                    사회학적 관점과 표준화 프로세스로 정밀한 품질과 안전을 기획합니다.
-                </p>
-                <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl word-keep-all">
-                    사회학적 조사 분석 기법과 국제 운항품질/안전관리 표준(ICAO Annex 19, IOSA)을 결합하여 규제 환경 및 조직 절차의 병목을 체계적으로 개선해 왔습니다. 데이터 정합성 검증과 최신 AI 도구를 활용한 업무 효율화에 강점이 있습니다.
-                </p>
-            </div>
-
-            <!-- 1.1 학력 (EDUCATION) -->
-            <div class="py-12 border-b border-slate-200">
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
                     학력
-                </h2>
-
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                    <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                        2020.03 - 2026.02
-                        학사 졸업
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1.5 sm:gap-6 items-baseline">
+                    <div class="sm:col-span-3 text-xs sm:text-sm font-medium text-slate-500 tabular-nums">
+                        2021.03 – 2026.02
                     </div>
-                    <div class="sm:col-span-8 space-y-1">
-                        <h3 class="text-base font-bold text-slate-900">경희대학교 (Kyung Hee University)</h3>
-                        <p class="text-xs sm:text-sm text-slate-600">사회학(본), 사회과학 융합전공 미래기술사회트랙(복수)</p>
-                        <p class="text-xs text-slate-500">· 해외 교환학생 프로그램 수료  </p>
+                    <div class="sm:col-span-9 text-sm sm:text-base font-semibold text-[#0F172A]">
+                        경희대학교(서울) 사회학, 사회과학 융합전공 미래기술사회트랙 <span class="font-normal text-slate-600"> (교환학생 수료)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- 1.2 경력 및 활동 이력 (EXPERIENCE & ACTIVITIES) -->
-            <div class="py-12 border-b border-slate-200">
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
-                    경력 및 활동 이력
-                </h2>
-
-                <div class="space-y-10">
-                    <!-- 경력 1: 에어제타 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2026.04 – 2026.07
-                            인턴
-                        </div>
-                        <div class="sm:col-span-8 space-y-1.5">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">에어제타 (Air Zeta)</h3>
-                                <span class="text-xs text-slate-500 font-medium">· 운항품질팀 인턴</span>
-                            </div>
-                            <ul class="text-xs sm:text-sm text-slate-600 space-y-1 leading-relaxed">
-                                <li>· 팀 내 운항안전 매뉴얼(Safety Management Systems and Just Culture) 개정 작업 및 IOSA 체크리스트 최신화</li>
-                                <li>· 본부 전 문서 대상 국제민간항공기구(ICAO) 규정 및 IOSA 안전 기준 정합성 Audit 수행</li>
-                                <li>· 안전 보고 시스템 내 자발적 보고서 처리 절차 피드백 환류 프로세스 개선</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 경력 2: 입소스 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2025.02 - 2025.02
-                            단기 계약직(보고서 제작 보조)
-                        </div>
-                        <div class="sm:col-span-8 space-y-1.5">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">입소스 (Ipsos)</h3>
-                                <span class="text-xs text-slate-500 font-medium">· Cross-Screen Study 보고서 제작 그룹(Market Strategy & Understanding 부서) Research Assistant  </span>
-                            </div>
-                            <ul class="text-xs sm:text-sm text-slate-600 space-y-1 leading-relaxed">
-                                <li>· 국·영문 정량·정성 자료 및 VOC 데이터 분석, 시각화</li>
-                                <li>· Excel로 재가공된 데이터 오류 필터링 및 보고서 시각화 기초 자료 작성·검수</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- 경력 3: 사회학과 학생회 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2020.03 - 2021.09
-                            교내 활동
-                        </div>
-                        <div class="sm:col-span-8 space-y-1">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">경희대학교 사회학과 학생회</h3>
-                                <span class="text-xs text-slate-500 font-medium">· 홍보부 부원 및 부장</span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                · 학생회 공식 SNS 관리 및 부서 자체 기획 이벤트 기획·운영
-                                · 학생회 소식 및 사업 홍보 콘텐츠(카드뉴스, 영상, 포스터) 제작
-                                · 학생회 공식 소통 채널 5일 응답 SLA 프로토콜 구축 및 홍보 콘텐츠 표준 가이드 제작
-                                · 부원 6명의 작업 피드백과 역할 분담 주도, 학생회 내/외부 구성원과 홍보 메시지 및 방향성 조율
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 경력 4: 미래인재센터 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2022.03 - 2022.08
-                            교내 활동
-                        </div>
-                        <div class="sm:col-span-8 space-y-1">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">경희대학교 미래인재센터</h3>
-                                <span class="text-xs text-slate-500 font-medium">· 서포터즈</span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                · 센터 취창업 지원 프로그램 홍보로 센터 공식 SNS 팔로워 1,191명 증가
-                                · 빙고 이벤트(인스타그램 팔로워 277명 증가), 대학 축제 부스(준비했던 소품 200개 모두 소진/인스타그램 팔로워 150명 증가), 시험기간 응원 센터 홍보(홍보물 300개 모두 소진) 등 타깃 맞춤형 이벤트 기획 및 운영
-                                · Smore를 이용한 심리테스트 기반 온라인 참여형 콘텐츠 제작으로 사용자 경험 설계 역량 체득 
-                                · 정기 메일 뉴스레터 발행 및 재학생 피드백 수집 설문 프로세스를 운용하여 학생들의 VOC를 체계적으로 수집·반영
-                                · Notion, Google Workspace, Figma 툴 활용해 협업 및 디자인 제작 역량 향상
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- 경력 5: 해외 파견 교환학생 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2024.03 - 2024.08
-                            해외 경험
-                        </div>
-                        <div class="sm:col-span-8 space-y-1">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">University of Bremen</h3>
-                                <span class="text-xs text-slate-500 font-medium">· 파견 교환학생</span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                · 사회학 및 문화학 전공 14학점(한국 기준) 수강
-                                · MA 과정 Innovation Economics: The case of Artificial Intelligence 강의 수강, 영문 개인 발표
-                                · Digital Games and Community 강의 수강, 영문 소논문 작성 및 발표
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- 경력 6: 한국어 도우미 -->
-                    <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-start">
-                        <div class="sm:col-span-4 text-xs font-medium text-slate-400">
-                            2021.09 - 2021.12
-                            봉사활동
-                        </div>
-                        <div class="sm:col-span-8 space-y-1">
-                            <div class="flex items-center gap-2">
-                                <h3 class="text-base font-bold text-slate-900">유학생 한국어 도우미</h3>
-                                <span class="text-xs text-slate-500 font-medium">· 한국어 도우미</span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                · 외국인 유학생 대상 언어·문화 적응 지원 및 다문화 커뮤니케이션 조율
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 1.3 참여 프로젝트 및 연구 (PROJECTS & RESEARCH) -->
-            <div class="py-12 border-b border-slate-200">
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
-                    프로젝트
-                </h2>
-
-                <div class="space-y-8">
-                    <!-- 연구 1 -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-bold text-slate-900">
-                                지역별 보육시설 수가 남녀 평균 초혼연령에 미치는 영향
-                            </h3>
-                            <span class="text-xs text-slate-400">경희대학교 (사회조사분석)</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            ‘지역별 보육시설 수가 남녀 평균 초혼연령에 미치는 영향’을 주제로 가설을 세우고 이를 검증하는 양적연구 수행.
-                            공공데이터를 활용해 변수를 설정하고 R프로그램을 사용해 다중회귀분석 수행. 결론을 도출하여 보고서 작성 및 발표.
-                        </p>
-                    </div>
-
-                    <!-- 연구 2 -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-bold text-slate-900">
-                                E-sports Communities and Traditional Sports Communities: League of Legends and Baseball Culture
-                                - Focus on the Korean Market 
-
-                            </h3>
-                            <span class="text-xs text-slate-400">University of Bremen (Digital Games and Community)</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            전통 스포츠와 e스포츠 커뮤니티 간 문화적·사회적 차이점과 유사점을 분석한 final paper를 작성해 student conference 참석 및 발표.
-                            특히 Youtube, X 등 팬 커뮤니티를 분석하며 League of Legends와 한국 야구리그(KBO)가 한국 사회에 문화·사회적으로 미치는 영향 & E스포츠와 전통 스포츠의 현대 한국 사회 속 공존 발전 제언 도출 (영문).
-                        </p>
-                    </div>
-
-                    <!-- 연구 3 -->
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-bold text-slate-900">
-                                How does machine learning algorithms influence real-world behavior
-                            </h3>
-                            <span class="text-xs text-slate-400">University of Bremen (Innovation Economics: The case of Artificial Intelligence)</span>
-                        </div>
-                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            AI 발전의 역사 및 기술 종류, Machine learning AI기반 기술 변화 학습
-                            알고리즘이 사람들의 현실 행동, 산업과 시장에 미치는 영향 분석 및 발표, final paper 작성 (영문).
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 1.4 핵심 역량 (SKILLS & CORE COMPETENCIES) -->
+            <!-- Subsection B: 경력 및 활동 -->
             <div class="pt-12">
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">
-                    핵심 역량
-                </h2>
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
+                    경력 및 활동
+                </h3>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-                    <!-- 역량 1: 데이터 분석 & 리서치 -->
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
-                            데이터 분석 & 리서치
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            <strong>SPSS, R, Python</strong> 기반 데이터 정제 및 회귀·교차분석, 정량·정성 설문 및 인터뷰 조사 설계
+                <div class="divide-y divide-slate-200">
+                    <!-- 1. 에어제타 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">에어제타 (Air Zeta)</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">운항품질팀 인턴</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            운항 매뉴얼 표준 양식 통합, 문서 감사(Document Audit) 및 안전관리 절차 개정
                         </p>
                     </div>
 
-                    <!-- 역량 2: 다른 역량 -->
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
-                            다른 역량(글쓰기?)
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            <strong>ICAO Annex 19</strong> 규정 검증, <strong>IOSA</strong> 표준 감사 체크리스트 최신화, Just Culture(공정문화) 절차 수립 및 문서 감사
+                    <!-- 2. 입소스 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">입소스 (Ipsos)</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">리서치 프로젝트 참여</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            정량·정성 시장 조사 데이터 수집, 검증 및 분석 리포팅
+                        </p>
+                    </div>
+
+                    <!-- 3. 미래인재센터 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">미래인재센터</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">서포터즈</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            정기 뉴스레터 기획·발행 및 학생 VOC 피드백 루프 운영
+                        </p>
+                    </div>
+
+                    <!-- 4. 사회과학대학 학생회 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">사회과학대학 학생회</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">홍보국장</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            교수-학생 소통 프로그램 '사회Talk' 기획·총괄 및 익명 건의함 운영 가이드라인 수립
+                        </p>
+                    </div>
+
+                    <!-- 5. 사회과학대학 학생회 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">사회과학대학 학생회</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">홍보국장</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            교수-학생 소통 프로그램 '사회Talk' 기획·총괄 및 익명 건의함 운영 가이드라인 수립
                         </p>
                     </div>
     
-                    <!-- 역량 3: AI 활용 -->
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
-                            AI 활용
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            <strong>Gemini, Claude, NotebookLM</strong> 도구를 활용한 업무 규정 검증 및 문서 요약 자동화
-                        </p>
-                    </div>
-                  
-                    <!-- 역량 4: 생산성 도구 -->
-                    <div class="space-y-2">
-                        <h3 class="text-sm font-bold text-slate-900 border-b border-slate-900 pb-1.5">
-                            생산성 & 워크플로우
-                        </h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            <strong>,MS Office, Google Workspace, Notion, Figma </strong> 를 활용한 설문 가이드 시각 자료, 리서치 결과 발표용 대시보드와 리포트 레이아웃 시각화
+                    <!-- 6. 한국어 도우미 -->
+                    <div class="py-4 first:pt-0 last:pb-0 grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 items-baseline">
+                        <div class="sm:col-span-4 flex flex-wrap items-baseline gap-2">
+                            <span class="text-sm sm:text-base font-bold text-[#0F172A]">한국어 도우미</span>
+                            <span class="text-xs font-medium text-[#1D4ED8]">봉사활동</span>
+                        </div>
+                        <p class="sm:col-span-8 text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                            외국인 유학생 대상 한국어 멘토링 및 대학 생활 적응 지원
                         </p>
                     </div>
                 </div>
             </div>
-
         </section>
 
         <!-- ========================================== -->
-        <!-- SECTION 2: 포트폴리오 (PORTFOLIO) -->
+        <!-- SECTION 2: 포트폴리오 (#portfolio) - 통합 프로젝트 & 리서치 -->
         <!-- ========================================== -->
-        <section id="portfolio" class="pt-12 border-t border-slate-900 mb-24">
-            <div class="flex items-baseline justify-between mb-10">
-                <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">
-                    포트폴리오
-                </h2>
-                <span class="text-xs text-slate-400">클릭 시 상세 모달 보기</span>
+        <section id="portfolio" class="py-16 border-b border-slate-200">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-10">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Portfolio</span>
+                    <h2 class="text-2xl font-extrabold tracking-tight text-[#0F172A] mt-1">포트폴리오</h2>
+                </div>
+                <p class="text-xs text-slate-500">
+                    각 프로젝트를 클릭하면 문제상황 · 해결 설계 · 결과 상세 내용을 확인할 수 있습니다.
+                </p>
             </div>
 
-            <!-- 프로젝트 리스트 (플랫 항목) -->
-            <div class="divide-y divide-slate-200">
-                
-                <!-- 프로젝트 1 -->
-                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-1')">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-bold text-slate-400">01</span>
-                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
-                                에어제타 운항품질 매뉴얼 표준화 & Just Culture(OQB003) 개정
-                            </h3>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-500 shrink-0">에어제타 (Air Zeta)</span>
+            <!-- 플랫 에디토리얼 리스트 (박스/그림자 없이 1px 연회색 구분선 사용) -->
+            <div class="divide-y divide-slate-200 border-t border-b border-slate-200">
+
+                <!-- Project 01 -->
+                <article
+                    role="button"
+                    tabindex="0"
+                    onclick="openProjectModal('proj-1')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('proj-1');}"
+                    class="py-9 px-2 -mx-2 rounded-lg group cursor-pointer transition-colors hover:bg-slate-100/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
+                >
+                    <div class="flex flex-wrap items-center gap-3 mb-3">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 tabular-nums">01</span>
+                        <span class="text-xs font-semibold text-[#1D4ED8]">리서치 &amp; 데이터 분석</span>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
-                        ICAO Annex 19 및 IOSA 안전 기준 갱신에 맞춰 기존 운항안전 매뉴얼(OQB001, OQB003)을 전면 개정하고, 자발적 안전보고 시스템 피드백 환류 프로토콜을 구축했습니다.
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors tracking-tight mb-1.5 word-keep">
+                        게임 속 언어 표현에서 의미찾기
+                    </h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500 mb-4 word-keep">
+                        게임 속 언어 표현과 캐릭터 분석을 통한 젠더 가치관 연구 (리그 오브 레전드 중심으로)
                     </p>
 
-                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
-                        <div class="font-bold text-slate-900">
-                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
-                            IOSA 국제 표준 정합성 100% 달성 & 피드백 주기를 5일로 단축
-                        </div>
-                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
-                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 max-w-3xl word-keep">
+                        글로벌 인기 PC 게임 '리그 오브 레전드(LoL)'의 세계관과 153개 챔피언 데이터를 활용하여 역할군, 서사, 발화 형식을 정량·정성적으로 분석한 리서치 프로젝트입니다. 게임 내 콘텐츠에 반영된 언어를 구조화하고, 게임과 사회적 인식 간의 상관관계를 도출했습니다.
+                    </p>
+
+                    <div class="flex items-center justify-end">
+                        <span class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
+                            <span>상세보기</span>
+                            <span class="transition-transform group-hover:translate-x-1">→</span>
                         </span>
                     </div>
                 </article>
 
-                <!-- 프로젝트 2 -->
-                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-2')">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-bold text-slate-400">02</span>
-                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
-                                학생회 소통 창구 5일 응답 프로토콜 구축 & 콘텐츠 브랜딩
-                            </h3>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-500 shrink-0">경희대 사회학과</span>
+                <!-- Project 02 -->
+                <article
+                    role="button"
+                    tabindex="0"
+                    onclick="openProjectModal('proj-2')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('proj-2');}"
+                    class="py-9 px-2 -mx-2 rounded-lg group cursor-pointer transition-colors hover:bg-slate-100/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
+                >
+                    <div class="flex flex-wrap items-center gap-3 mb-3">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 tabular-nums">02</span>
+                        <span class="text-xs font-semibold text-[#1D4ED8]">프로세스 표준화 &amp; 품질 관리</span>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
-                        파편화된 건의 채널을 단일화하고 모든 접수건에 5일 이내 응답을 보장하는 SLA 프로토콜을 도입하여 소통 신뢰도를 확보했습니다.
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors tracking-tight mb-1.5 word-keep">
+                        운항품질 매뉴얼 표준화 및 공정문화 위원회 운영절차 개정
+                    </h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500 mb-4 word-keep">
+                        에어제타 운항품질팀 문서 감사(Document Audit) 및 안전 보고 피드백 체계 개선
                     </p>
 
-                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
-                        <div class="font-bold text-slate-900">
-                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
-                            응답 리드타임 5일 이내 100% 준수 & 재학생 행사 참여율 대폭 상승
-                        </div>
-                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
-                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 max-w-3xl word-keep">
+                        항공사 운항품질 부서의 다수 매뉴얼 간 양식 불일치와 규정 누락 리스크를 해소하기 위해 전사 표준 양식을 수립했습니다. 공정문화 위원회 운영절차(OQB003) 개정과 안전 보고 피드백 루프 개선을 통해 내부 운영 안정성을 높였습니다.
+                    </p>
+
+                    <div class="flex items-center justify-end">
+                        <span class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
+                            <span>상세보기</span>
+                            <span class="transition-transform group-hover:translate-x-1">→</span>
                         </span>
                     </div>
                 </article>
 
-                <!-- 프로젝트 3 -->
-                <article class="py-8 group cursor-pointer transition-colors" onclick="openProjectModal('proj-3')">
-                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-bold text-slate-400">03</span>
-                            <h3 class="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
-                                데이터 기반 사용자/시장 조사 및 통계 리포팅
-                            </h3>
-                        </div>
-                        <span class="text-xs font-semibold text-slate-500 shrink-0">입소스 (Ipsos) 및 대학 리서치</span>
+                <!-- Project 03 -->
+                <article
+                    role="button"
+                    tabindex="0"
+                    onclick="openProjectModal('proj-3')"
+                    onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('proj-3');}"
+                    class="py-9 px-2 -mx-2 rounded-lg group cursor-pointer transition-colors hover:bg-slate-100/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D4ED8]"
+                >
+                    <div class="flex flex-wrap items-center gap-3 mb-3">
+                        <span class="text-xs font-bold tracking-wider text-slate-400 tabular-nums">03</span>
+                        <span class="text-xs font-semibold text-[#1D4ED8]">VOC 구조화 &amp; 커뮤니케이션 기획</span>
                     </div>
 
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 pl-7 sm:pl-7">
-                        SPSS 및 Python 분석과 정성 인터뷰 코딩북 설계를 통해 데이터 응답 오류를 필터링하고 시각화 리포트를 도출했습니다.
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors tracking-tight mb-1.5 word-keep">
+                        데이터 기반 학생-교수 소통 프로그램 '사회Talk' 및 VOC 운영체계 구축
+                    </h3>
+                    <p class="text-xs sm:text-sm font-medium text-slate-500 mb-4 word-keep">
+                        사전 설문 리서치 기반 인터뷰 기획과 익명 건의함 응답 표준 가이드라인 설계
                     </p>
 
-                    <div class="pl-7 sm:pl-7 flex flex-wrap items-center gap-6 text-xs">
-                        <div class="font-bold text-slate-900">
-                            <span class="text-slate-400 font-normal mr-1.5">핵심 성과:</span>
-                            응답 데이터 무결성 검증 100% & 시각화 가이드라인 작성
-                        </div>
-                        <span class="text-brand-600 font-semibold group-hover:underline inline-flex items-center gap-1">
-                            상세 내용 보기 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 max-w-3xl word-keep">
+                        단발성 행사에 그치던 학생회 소통 창구를 개선하기 위해 재학생 사전 설문 데이터를 분석하여 '사회Talk' 인터뷰를 기획했습니다. 또한 익명 건의함 응답 지연 문제를 해결하는 운영 가이드라인을 수립해 피드백 완결성을 확보했습니다.
+                    </p>
+
+                    <div class="flex items-center justify-end">
+                        <span class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
+                            <span>상세보기</span>
+                            <span class="transition-transform group-hover:translate-x-1">→</span>
                         </span>
                     </div>
                 </article>
@@ -457,29 +337,83 @@
         </section>
 
         <!-- ========================================== -->
-        <!-- SECTION 3: 연락하기 (CONTACT) -->
+        <!-- SECTION 3: 핵심 역량 (#skills) - 부드러운 회색 구분선 3열 그리드 -->
         <!-- ========================================== -->
-        <section id="contact" class="pt-16 border-t border-slate-900">
+        <section id="skills" class="py-16 border-b border-slate-200">
+            <div class="mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Core Competencies</span>
+                <h2 class="text-2xl font-extrabold tracking-tight text-[#0F172A] mt-1">핵심역량</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1 -->
+                <div class="border-t-2 border-slate-300 pt-5">
+                    <span class="block text-xs font-bold tracking-wider text-slate-400 mb-1.5 tabular-nums">01</span>
+                    <h3 class="text-base font-bold text-[#0F172A] mb-2.5">
+                        데이터 분석 &amp; 리서치
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                        R, SPSS, Python을 활용한 정량·정성 데이터 분석 및 가설 검증, 설문·심층 인터뷰 설계
+                    </p>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="border-t-2 border-slate-300 pt-5">
+                    <span class="block text-xs font-bold tracking-wider text-slate-400 mb-1.5 tabular-nums">02</span>
+                    <h3 class="text-base font-bold text-[#0F172A] mb-2.5">
+                        생산성 &amp; AI
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                        Gemini, Claude, NotebookLM 등의 AI 도구를 활용한 리서치 요약 및 업무 자동화, MS Office(OA) 실무 문서 작성
+                    </p>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="border-t-2 border-slate-300 pt-5">
+                    <span class="block text-xs font-bold tracking-wider text-slate-400 mb-1.5 tabular-nums">03</span>
+                    <h3 class="text-base font-bold text-[#0F172A] mb-2.5">
+                        협업 &amp; 프로세스
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed word-keep">
+                        MS Office, Google Workspace, Notion, Figma 를 활용한 설문 가이드 시각 자료, 리서치 결과 발표용 대시보드와 리포트 레이아웃 시각화
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4: CONTACT (#contact) -->
+        <!-- ========================================== -->
+        <section id="contact" class="pt-16">
             <div class="max-w-2xl">
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
-                    Contact
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Contact</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0F172A] mt-2 mb-4 word-keep">
+                    데이터와 구조로 문제를 해결하는 여정에 함께하겠습니다.
                 </h2>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-4">
-                    함께 프로세스와 품질을 만들어갈 제안을 기다립니다.
-                </h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-8">
-                    운항품질, 프로세스 표준화, 데이터 기반 기획 관련 문의나 커피챗 제안은 언제든 편하게 아래 메일로 연락해 주세요.
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-8 word-keep">
+                    프로덕트 기획, 데이터 기반 리서치, 프로세스 표준화 관련 채용 및 협업 문의는 아래 이메일로 편하게 연락해 주세요.
                 </p>
 
-                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm">
-                    <button onclick="copyToClipboard('sungyi.park@example.com')" class="inline-flex items-center gap-2 bg-slate-900 text-white font-medium px-5 py-3 rounded-full hover:bg-slate-800 transition-colors">
-                        <i data-lucide="copy" class="w-4 h-4"></i>
-                        <span>sungyi.park@example.com 복사</span>
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                    <button
+                        type="button"
+                        onclick="copyToClipboard('your-email@example.com')"
+                        class="inline-flex items-center gap-2 bg-[#0F172A] text-white text-xs sm:text-sm font-medium px-5 py-3 rounded-full hover:bg-[#1D4ED8] transition-colors cursor-pointer"
+                    >
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        <span>tjddl20033@gmail.com</span>
+                        <span class="text-[11px] text-slate-300 ml-1">복사</span>
                     </button>
 
-                    <a href="https://github.com/tjddl20033" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 font-medium px-4 py-3 border border-slate-300 rounded-full transition-colors">
+                    <a
+                        href="https://github.com/tjddl20033"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0F172A] border border-slate-200 hover:border-[#0F172A] bg-white px-5 py-3 rounded-full transition-colors"
+                    >
                         <i data-lucide="github" class="w-4 h-4"></i>
-                        <span>GitHub 프로필</span>
+                        <span>GitHub</span>
+                        <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-slate-400"></i>
                     </a>
                 </div>
             </div>
@@ -487,109 +421,286 @@
 
     </main>
 
-    <!-- 푸터 -->
-    <footer class="border-t border-slate-100 py-8 text-center text-xs text-slate-400">
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
+    <footer class="border-t border-slate-200 py-8 text-xs text-slate-400">
         <div class="max-w-4xl mx-auto px-5 sm:px-8 flex items-center justify-between">
-            <div>© 2026 박성이 (Sung-yi Park). All rights reserved.</div>
-            <a href="#about" class="hover:text-slate-900 transition-colors">TOP ↑</a>
+            <div>© 2026 박성이 (Seonglee Park). All rights reserved.</div>
+            <a href="#top" class="font-medium hover:text-[#0F172A] transition-colors">TOP ↑</a>
         </div>
     </footer>
 
-    <!-- 프로젝트 상세 모달 (MODAL) -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-        <div class="bg-white max-w-2xl w-full p-6 sm:p-8 rounded-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
-            <div class="flex items-start justify-between border-b border-slate-200 pb-4 mb-6">
+    <!-- ========================================== -->
+    <!-- PROJECT DETAIL MODAL POPUP -->
+    <!-- ========================================== -->
+    <div
+        id="projectModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+        onclick="handleBackdropClick(event)"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-slate-900/50 backdrop-blur-xs"
+    >
+        <div
+            id="modalPanel"
+            class="bg-[#FFFFFF] border border-[#E2E8F0] max-w-3xl w-full rounded-xl max-h-[88vh] flex flex-col overflow-hidden"
+        >
+            <!-- 모달 상단 고정 헤더 -->
+            <div class="px-6 sm:px-8 py-5 border-b border-[#E2E8F0] flex items-start justify-between gap-4 shrink-0 bg-[#FFFFFF]">
                 <div>
-                    <span id="modalCategory" class="text-xs font-bold text-brand-600">소속 / 카테고리</span>
-                    <h3 id="modalTitle" class="text-xl font-bold text-slate-900 mt-1">프로젝트 제목</h3>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span id="modalNumber" class="text-xs font-bold text-slate-400 tabular-nums">01</span>
+                        <span class="text-slate-300">·</span>
+                        <span id="modalCategory" class="text-xs font-semibold text-[#1D4ED8]">카테고리</span>
+                    </div>
+                    <h3 id="modalTitle" class="text-lg sm:text-xl font-extrabold text-[#0F172A] tracking-tight word-keep">
+                        프로젝트 제목
+                    </h3>
+                    <p id="modalSubtitle" class="text-xs sm:text-sm text-slate-500 mt-1 word-keep">
+                        프로젝트 부제
+                    </p>
                 </div>
-                <button onclick="closeProjectModal()" class="p-1 text-slate-400 hover:text-slate-900">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+
+                <button
+                    type="button"
+                    onclick="closeProjectModal()"
+                    aria-label="상세 모달 닫기"
+                    class="p-2 text-slate-400 hover:text-[#0F172A] transition-colors rounded-lg shrink-0"
+                >
+                    <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
 
-            <div class="space-y-6 text-xs sm:text-sm">
-                <div>
-                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">1. 배경 및 문제 정의</h4>
-                    <p id="modalProblem" class="text-slate-600 leading-relaxed">내용</p>
+            <!-- 모달 스크롤 본문 -->
+            <div class="px-6 sm:px-8 py-6 sm:py-8 overflow-y-auto space-y-8 text-xs sm:text-sm">
+
+                <!-- 1. 문제상황 (Background & Objective) -->
+                <div class="pb-7 border-b border-[#E2E8F0]">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-2.5">
+                        1. 문제상황 (Background &amp; Objective)
+                    </h4>
+                    <p id="modalProblem" class="text-slate-700 leading-relaxed word-keep">
+                        문제상황 내용
+                    </p>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">2. 주요 수행 액션 (Action)</h4>
-                    <p id="modalAction" class="text-slate-600 leading-relaxed whitespace-pre-line">내용</p>
+                <!-- 2. 문제 해결을 위한 설계 -->
+                <div class="pb-7 border-b border-[#E2E8F0]">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-4">
+                        2. 문제 해결을 위한 설계
+                    </h4>
+                    <div id="modalSteps" class="space-y-4">
+                        <!-- JavaScript로 Step 항목 렌더링 -->
+                    </div>
                 </div>
 
+                <!-- 3. 결과 -->
                 <div>
-                    <h4 class="font-bold text-slate-900 uppercase tracking-wider mb-1">3. 성과 및 결과 (Result)</h4>
-                    <p id="modalResult" class="font-semibold text-slate-900 leading-relaxed">내용</p>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-[#1D4ED8] mb-4">
+                        3. 결과
+                    </h4>
+                    <ul id="modalResults" class="space-y-3">
+                        <!-- JavaScript로 결과 항목 렌더링 -->
+                    </ul>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- 이메일 복사 완료 토스트 알림 -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white text-xs font-medium px-4 py-3 rounded-lg shadow-lg flex items-center gap-2">
-        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
-        <span>이메일 주소가 클립보드에 복사되었습니다!</span>
+    <!-- ========================================== -->
+    <!-- TOAST NOTIFICATION (이메일 복사 완료 알림) -->
+    <!-- ========================================== -->
+    <div
+        id="toast"
+        role="status"
+        aria-live="polite"
+        class="fixed bottom-6 right-6 z-50 hidden bg-[#0F172A] text-white text-xs font-medium px-4 py-3 rounded-lg flex items-center gap-2"
+    >
+        <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+        <span>이메일 주소가 복사되었습니다.</span>
     </div>
 
-    <!-- 스크립트 -->
+    <!-- ========================================== -->
+    <!-- SCRIPTS -->
+    <!-- ========================================== -->
     <script>
-        // Lucide 아이콘 활성화
+        // Lucide 아이콘 초기화
         lucide.createIcons();
 
-        // 프로젝트 상세 데이터 사전
+        // 포트폴리오 프로젝트 상세 데이터
         const projectDetails = {
             'proj-1': {
-                title: '에어제타 운항품질 매뉴얼 표준화 & Just Culture(OQB003) 개정',
-                category: '에어제타 (Air Zeta) 운항품질팀 인턴',
-                problem: 'ICAO Annex 19 개정 및 IOSA(IATA Operational Safety Audit) 최신 안전 규정에 따라 기존 매뉴얼과의 조항 간 격차(Gap) 분석 및 신속한 갱신이 시급했던 상황이었습니다.',
-                action: '1) 매뉴얼 표준 조항 대조표(Cross-reference Table)를 1:1로 작성하여 100% 검증 수립.\n2) Just Culture(공정문화) 자발적 안전보고서 제출 시 무벌칙 원칙 명시 및 피드백 환류 수렴 프로토콜 구축.\n3) Gemini 및 Claude 문서 비교 도구를 활용해 개정 공수를 40% 절감.',
-                result: 'IOSA 국제 안전 심사 정합성 100% 달성 및 지적사항 0건. 자발적 안전보고 피드백 주기를 기존 14일에서 5일로 대폭 단축.'
+                number: '01',
+                category: '리서치 & 데이터 분석',
+                title: '게임 속 언어 표현에서 의미찾기',
+                subtitle: '게임 속 언어 표현과 캐릭터 분석을 통한 젠더 가치관 연구 (리그 오브 레전드 중심으로)',
+                problem: '게임은 단순한 오락을 넘어 플레이어의 인식과 문화에 지대한 영향을 미치는 미디어입니다. 특히 장기 흥행 게임의 캐릭터 세팅, 시스템, 대사 등에 내재된 데이터 패턴을 분석하여, 유저에게 전달되는 내러티브와 구조적 특징을 객관적으로 진단하고자 함.',
+                steps: [
+                    {
+                        label: 'Step 1. 타겟 마켓 및 대상 선정 (Market & Data Scope)',
+                        desc: "포스트 코로나 시대 디지털 매체 영향력 분석 및 2020년 PC 게임 순위 리서치를 거쳐, 방대한 세계관과 유저 풀을 가진 '리그 오브 레전드(LoL)'를 핵심 분석 대상으로 채택."
+                    },
+                    {
+                        label: 'Step 2. 시스템 및 역할군 정량 분석 (System Data Analysis)',
+                        desc: '153개 챔피언의 주 역할군별 성비와 외형적 특성을 교차 분석하여, 전투/물리 능력 중심 직군과 보조/마법 직군 간의 분포 차이를 시각화.'
+                    },
+                    {
+                        label: 'Step 3. 내러티브 및 서사 구조 분석 (Text & Narrative Analysis)',
+                        desc: '남성/여성/그외 챔피언의 성장 환경, 성향, 시련 극복 양상을 비교하여 캐릭터 설계 시 부여되는 서사의 다양성과 이분법적 구조를 정성적으로 분류.'
+                    },
+                    {
+                        label: 'Step 4. 발화 데이터 및 텍스트 마이닝 (Dialogue Analysis)',
+                        desc: '챔피언 대사의 높임법 사용 비율과 발화 형태를 전수 조사하여, 텍스트 데이터 속 숨겨진 권력 관계와 화행(Speech Act) 패턴을 실증적으로 분석.'
+                    }
+                ],
+                results: [
+                    {
+                        lead: '데이터 기반 구조적 패턴 도출',
+                        desc: '153개 챔피언의 메타데이터 분석을 통해 게임 내 역할군 편중, 서사의 다양성 격차, 발화 톤앤매너의 불균형 등을 정량적 수치(남성 챔피언 수 2배, 여성 챔피언의 높은 높임법 비율 등)로 증명.'
+                    },
+                    {
+                        lead: '유저 경험(UX) 및 기획적 시사점 확보',
+                        desc: '대중문화 매체로서 게임이 유저의 인식에 미치는 영향력을 확인했으며, 향후 캐릭터 IP 기획이나 내러티브 디자인 시 다양성과 입체성을 확보하는 것이 글로벌 트렌드이자 차별화 포인트가 될 수 있음을 도출.'
+                    }
+                ]
             },
             'proj-2': {
-                title: '학생회 소통 채널 5일 응답 프로토콜 구축 & 콘텐츠 브랜딩',
-                category: '경희대학교 사회학과 학생회 홍보국장',
-                problem: '학생들의 다양한 건의사항과 문의가 여러 온라인 채널로 분산되어 피드백이 지연되고 소통 만족도가 낮았던 문제가 있었습니다.',
-                action: '1) 건의 수렴 접수 창구를 단일화하고 모든 문의건에 대해 최대 5일 이내 응답을 보장하는 SLA 프로토콜 도입.\n2) 학생회 카드뉴스 및 소식지 디자인 서식을 표준 가이드라인으로 일원화.',
-                result: '익명 창구 응답 리드타임 5일 이내 100% 준수 완료. 학생회 행사 참여율 및 소통 만족도 지표 대폭 상승.'
+                number: '02',
+                category: '프로세스 표준화 & 품질 관리',
+                title: '운항품질 매뉴얼 표준화 및 공정문화 위원회 운영절차 개정',
+                subtitle: '에어제타 운항품질팀 문서 감사(Document Audit) 및 안전 보고 피드백 체계 개선',
+                problem: '항공사 운항품질 부서 내 다수의 매뉴얼과 지침서 간 양식 불일치 및 개정 이력 관리 기준 상이로 인해 문서 검토 리드타임이 길어지고, 국제 항공 안전 기준(ICAO/IOSA) 대비 규정 누락 및 안전 보고 피드백 지연 리스크가 존재했습니다.',
+                steps: [
+                    {
+                        label: 'Step 1. 규정 정합성 진단 및 Gap 분석 (Document Audit)',
+                        desc: '기존 내부 운항안전 매뉴얼과 ICAO·IOSA 감사 체크리스트 조항을 1:1 대조표로 전수 점검하여 양식 불일치 구간과 보완이 필요한 규정 항목을 식별.'
+                    },
+                    {
+                        label: 'Step 2. 전사 표준 양식 수립 및 매뉴얼 일원화 (Standardization)',
+                        desc: '문서 번호 체계, 개정 이력 표기, 승인 절차를 단일 표준 포맷으로 통합하여 부서 간 문서 일관성과 추적성을 확보.'
+                    },
+                    {
+                        label: 'Step 3. 공정문화 위원회 운영절차(OQB003) 및 피드백 루프 개정 (SOP Revision)',
+                        desc: '자발적 안전보고서 접수 시 무벌칙 원칙과 처리 기한을 명문화하고, 보고자에게 검토 결과를 회신하는 표준 피드백 프로세스를 수립.'
+                    }
+                ],
+                results: [
+                    {
+                        lead: '내부 운영 안정성 및 국제 기준 정합성 제고',
+                        desc: '전사 표준 양식 적용을 통해 매뉴얼 검토·개정 효율을 높이고 ICAO·IOSA 감사 기준과의 정합성을 강화.'
+                    },
+                    {
+                        lead: '지속 가능한 안전 보고 환류 체계 구축',
+                        desc: '공정문화 위원회 운영절차(OQB003) 개정을 통해 자발적 안전 보고의 신뢰도와 피드백 완결성을 확보.'
+                    }
+                ]
             },
             'proj-3': {
-                title: '데이터 기반 사용자/시장 조사 및 통계 리포팅',
-                category: '입소스 (Ipsos) 및 대학 리서치 활동',
-                problem: '정량 및 정성 시장조사 수행 과정에서 다량의 응답 데이터 오류와 코딩 기준의 파편화로 검증 리드타임이 증가하는 현상이 발생했습니다.',
-                action: '1) 정량·정성 데이터 코딩북 표준 기준을 재정의하여 작업 기준 마련.\n2) SPSS 및 Python을 활용한 회귀분석 및 논리적 오류 필터링 수식 적용.',
-                result: '데이터 수작업 검증 오차율 0% 달성 및 시각화 가이드라인 작성을 통한 최종 보고서 완성도 향상.'
+                number: '03',
+                category: 'VOC 구조화 & 커뮤니케이션 기획',
+                title: "데이터 기반 학생-교수 소통 프로그램 '사회Talk' 및 VOC 운영체계 구축",
+                subtitle: '사전 설문 리서치 기반 인터뷰 기획과 익명 건의함 응답 표준 가이드라인 설계',
+                problem: '기존 학생회 소통 창구가 단발성 이벤트에 그쳐 재학생의 실제 학업·진로 니즈를 충분히 반영하지 못했으며, 익명 건의함의 접수·처리 기준이 부재해 응답 지연 및 피드백 누락이 반복되는 문제가 있었습니다.',
+                steps: [
+                    {
+                        label: 'Step 1. 재학생 사전 설문 데이터 분석 및 니즈 도출 (User Research)',
+                        desc: '단과대 재학생 대상 사전 설문조사 및 주관식 응답 텍스트 분석을 수행하여, 학생들이 가장 궁금해하는 진로·학업 핵심 키워드와 소통 병목 지점을 도출.'
+                    },
+                    {
+                        label: 'Step 2. 데이터 기반 교수-학생 인터뷰 \'사회Talk\' 기획 (Program Design)',
+                        desc: '설문에서 도출된 우선순위 질문을 중심으로 교수진 인터뷰 콘텐츠 \'사회Talk\'를 기획·총괄하여 구성원 간 정보 비대칭을 해소.'
+                    },
+                    {
+                        label: 'Step 3. 익명 건의함 운영 표준 가이드라인 수립 (VOC Loop)',
+                        desc: '건의 접수부터 분류, 유관 부서 전달, 공식 답변 게시까지의 단계별 처리 기한과 응답 원칙을 명문화한 VOC 운영 매뉴얼을 구축.'
+                    }
+                ],
+                results: [
+                    {
+                        lead: '피드백 완결성 확보 및 응답 지연 해소',
+                        desc: '익명 건의함 운영 가이드라인 정착을 통해 접수된 VOC의 누락을 방지하고 정기적인 공식 답변 피드백 루프를 구축.'
+                    },
+                    {
+                        lead: '재사용 가능한 소통 프로그램 표준 자산 마련',
+                        desc: '설문 기반 기획 포맷과 VOC 운영 매뉴얼을 문서화하여 일회성 행사를 넘어 지속 운영 가능한 소통 체계로 정착.'
+                    }
+                ]
             }
         };
 
-        // 모달 열기 함수
-        function openProjectModal(id) {
-            const data = projectDetails[id];
+        let lastFocusedElement = null;
+
+        // 프로젝트 상세 모달 열기
+        function openProjectModal(projectId) {
+            const data = projectDetails[projectId];
             if (!data) return;
 
-            document.getElementById('modalTitle').innerText = data.title;
-            document.getElementById('modalCategory').innerText = data.category;
-            document.getElementById('modalProblem').innerText = data.problem;
-            document.getElementById('modalAction').innerText = data.action;
-            document.getElementById('modalResult').innerText = data.result;
+            lastFocusedElement = document.activeElement;
+
+            document.getElementById('modalNumber').textContent = data.number;
+            document.getElementById('modalCategory').textContent = data.category;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalSubtitle').textContent = data.subtitle;
+            document.getElementById('modalProblem').textContent = data.problem;
+
+            // Step 목록 렌더링
+            const stepsContainer = document.getElementById('modalSteps');
+            stepsContainer.innerHTML = '';
+            data.steps.forEach((step) => {
+                const item = document.createElement('div');
+                item.className = 'pl-3.5 border-l-2 border-[#E2E8F0]';
+                item.innerHTML = `
+                    <p class="font-bold text-[#0F172A] mb-1 word-keep">${step.label}</p>
+                    <p class="text-slate-600 leading-relaxed word-keep">${step.desc}</p>
+                `;
+                stepsContainer.appendChild(item);
+            });
+
+            // 결과 목록 렌더링
+            const resultsContainer = document.getElementById('modalResults');
+            resultsContainer.innerHTML = '';
+            data.results.forEach((res) => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-2.5 text-slate-700 leading-relaxed word-keep';
+                li.innerHTML = `
+                    <span class="text-[#1D4ED8] font-bold mt-0.5">•</span>
+                    <span><strong class="font-bold text-[#0F172A]">${res.lead}:</strong> ${res.desc}</span>
+                `;
+                resultsContainer.appendChild(li);
+            });
 
             const modal = document.getElementById('projectModal');
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        // 모달 닫기 함수
+        // 프로젝트 상세 모달 닫기
         function closeProjectModal() {
             const modal = document.getElementById('projectModal');
             modal.classList.add('hidden');
             document.body.style.overflow = '';
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
         }
 
-        // ESC 키 닫기 이벤트
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeProjectModal();
+        // 배경(Backdrop) 클릭 시 모달 닫기
+        function handleBackdropClick(event) {
+            if (event.target === document.getElementById('projectModal')) {
+                closeProjectModal();
+            }
+        }
+
+        // ESC 키 입력 시 모달 닫기
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                const modal = document.getElementById('projectModal');
+                if (!modal.classList.contains('hidden')) {
+                    closeProjectModal();
+                }
+            }
         });
 
         // 모바일 메뉴 토글
@@ -598,29 +709,40 @@
         const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
         });
 
-        mobileNavItems.forEach(item => {
+        mobileNavItems.forEach((item) => {
             item.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // 이메일 클립보드 복사
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
+        // 이메일 클립보드 복사 및 토스트 알림
+        let toastTimer = null;
+        function copyToClipboard(emailText) {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = emailText;
+                textarea.setAttribute('readonly', '');
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+            } catch (err) {
+                console.error('클립보드 복사 중 오류:', err);
+            }
 
             const toast = document.getElementById('toast');
             toast.classList.remove('hidden');
-            setTimeout(() => {
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
                 toast.classList.add('hidden');
-            }, 3000);
+            }, 2800);
         }
     </script>
 </body>
