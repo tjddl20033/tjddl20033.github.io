@@ -653,7 +653,7 @@
   </div>
 
   <!-- JAVASCRIPT LOGIC -->
-  <script>
+ <script>
     // FULL PORTFOLIO DATASET (All 7 Items complete without truncation)
     const portfolioData = [
       {
@@ -672,9 +672,9 @@
           { title: "유저 경험(UX) 및 기획적 시사점 확보", desc: "대중문화 매체로서 게임이 유저의 인식에 미치는 영향력을 확인했으며, 향후 캐릭터 IP 기획이나 내러티브 디자인 시 다양성과 입체성을 확보하는 것이 글로벌 트렌드이자 차별화 포인트가 될 수 있음을 도출." }
         ],
         images: [
-          { src: "images/lol-paper-1.png", caption: "표지 },
+          { src: "images/lol-paper-1.png", caption: "표지" },
           { src: "images/lol-paper-2.png", caption: "153개 챔피언 역할군별 성비 분포 시각화" },
-          { src: "images/lol-paper-3.png", caption: "서사, 역할군 및 발화 데이터 높임법 및 화행 분석 종합 결론" },
+          { src: "images/lol-paper-3.png", caption: "서사, 역할군 및 발화 데이터 높임법 및 화행 분석 종합 결론" }
         ]
       },
       {
@@ -751,7 +751,7 @@
         images: [
           { src: "images/sports-paper-1.png", caption: "표지 및 도입" },
           { src: "images/sports-paper-2.png", caption: "KBO의 마케팅 전략과 결론" },
-          { src: "images/sports-paper-3.png", caption: "결론" },
+          { src: "images/sports-paper-3.png", caption: "결론" }
         ]
       },
       {
@@ -896,7 +896,7 @@
       }, 200);
     }
 
-    // GALLERY IMAGE FALLBACK HANDLER (Graceful layout if image file is not found locally)
+    // GALLERY IMAGE FALLBACK HANDLER
     function renderGalleryFallback(imgElement, srcPath, caption) {
       const container = imgElement.parentElement;
       if (!container) return;
@@ -939,7 +939,6 @@
       lightboxCounter.innerText = `${currentLightboxIndex + 1} / ${currentModalImages.length}`;
       lightboxCaption.innerText = item.caption;
 
-      // Render image or graceful placeholder if image is missing
       lightboxMediaContainer.innerHTML = `
         <img 
           src="${item.src}" 
@@ -949,7 +948,6 @@
         />
       `;
 
-      // Hide Nav buttons if only 1 image
       if (currentModalImages.length <= 1) {
         lightboxPrevBtn.classList.add('hidden');
         lightboxNextBtn.classList.add('hidden');
@@ -1003,7 +1001,6 @@
       renderLightboxContent();
     }
 
-    // Modal Backdrop Clicks
     modalBackdrop.addEventListener('click', (e) => {
       if (e.target === modalBackdrop) {
         closeModal();
@@ -1016,7 +1013,6 @@
       }
     });
 
-    // Keyboard Event Handling for Lightbox & Modals
     window.addEventListener('keydown', (e) => {
       if (!lightboxModal.classList.contains('hidden')) {
         if (e.key === 'Escape') {
@@ -1051,7 +1047,6 @@
       }
       document.body.removeChild(tempInput);
 
-      // Show Toast Notification
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toastMsg');
       toastMsg.innerText = `이메일 주소가 복사되었습니다. (${email})`;
@@ -1064,7 +1059,6 @@
         toast.classList.add('translate-y-16', 'opacity-0');
       }, 2800);
     }
-    const openModal = openProjectModal;
   </script>
 </body>
 </html>
